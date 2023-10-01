@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap");
+
+// ### Primary
+
+$dark-cyan: hsl(185, 75%, 39%);
+$very-dark-desaturated-blue: hsl(229, 23%, 23%);
+$dark-grayish-blue: hsl(227, 10%, 46%);
+
+// ### neutral
+
+$dark-gray: hsl(0, 0%, 59%);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  font-family: "Kumbh Sans", sans-serif;
+  background-color: $dark-cyan;
+  background-image: url(../images/bg-pattern-top.svg),
+    url(../images/bg-pattern-bottom.svg);
+  background-size: cover;
+  background-position: bottom 50vh right 50vw, top 50vh left 50vw;
+  background-repeat: no-repeat, no-repeat;
+}
+
+.card {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../images/bg-pattern-card.svg);
+  background-repeat: no-repeat;
+  background-position: top;
+  min-width: 350px;
+  min-height: 360px;
+  border-radius: 1em;
+  .picture {
+    border-radius: 50%;
+    border: 0.4em solid white;
+    margin-top: 5em;
+  }
+  .person-name {
+    margin-top: 1em;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: $very-dark-desaturated-blue;
+    .age {
+      font-weight: 400;
+      color: $dark-grayish-blue;
+    }
+  }
+  .location {
+    margin-top: 0.5em;
+    font-size: 0.9em;
+    color: $dark-grayish-blue;
+  }
+
+  // STATUS CARD
+
+  .status-card {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 1.5em;
+    border-top: 1px solid $dark-gray;
+    padding: 1.5em 1.5em 1.5em 1.5em;
+    .status {
+      text-align: center;
+      .status-number {
+        font-weight: 700;
+        font-size: 1.2em;
+        color: $very-dark-desaturated-blue;
+      }
+      .status-name {
+        font-size: 0.7em;
+        letter-spacing: 0.1em;
+        margin-top: 0.2em;
+        color: $dark-gray;
+      }
+    }
+  }
+}
+
+footer {
+  max-width: 350px;
+  padding: 1em;
+  text-align: center;
+}

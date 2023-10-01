@@ -1,0 +1,86 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@mixin borderNone {
+  border: none;
+  border-radius: 0.5em;
+}
+
+body {
+  background-color: rgba(100, 98, 98, 0.589);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  padding: 1em;
+}
+
+button {
+  margin: 0.2em 0;
+  padding: 0.5em;
+  @include borderNone;
+  background-color: rgb(62, 62, 128);
+  color: white;
+  font-weight: 600;
+  transition: 0.2s ease;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 0 5px 2px white inset;
+  }
+}
+
+.main-form {
+  min-width: 400px;
+  label {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 0.2em 0;
+  }
+  input {
+    padding: 0.7em;
+    @include borderNone;
+    box-shadow: 0 0 5px 2px rgb(62, 62, 128) inset;
+    &:focus {
+      outline: none;
+      border: 1px solid rgb(62, 62, 128);
+    }
+  }
+  button {
+    width: 100%;
+  }
+  .form-row {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+h1 {
+  margin-top: 1em;
+}
+
+ul {
+  list-style-type: none;
+  min-width: 400px;
+  li {
+    button {
+        margin-left: 1em;
+    }
+    label {
+      input {
+        margin: 0 0.8em;
+        width: 1.2em;
+        height: 1.2em;
+      }
+      font-size: 1.2em;
+      margin: 0.4em;
+      font-weight: 600;
+      color: rgb(31, 31, 116);
+    }
+  }
+}

@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  font-family: "Kumbh Sans", sans-serif;
+  background-color: hsl(185, 75%, 39%);
+  background-image: url(../images/bg-pattern-top.svg), url(../images/bg-pattern-bottom.svg);
+  background-size: cover;
+  background-position: bottom 50vh right 50vw, top 50vh left 50vw;
+  background-repeat: no-repeat, no-repeat;
+  overflow-x: hidden;
+}
+
+.card {
+  margin: 1em;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../images/bg-pattern-card.svg);
+  background-repeat: no-repeat;
+  background-position: top;
+  min-width: 350px;
+  min-height: 360px;
+  border-radius: 1em;
+}
+.card .picture {
+  border-radius: 50%;
+  border: 0.4em solid white;
+  margin-top: 5em;
+}
+.card .person-name {
+  margin-top: 1em;
+  font-size: 1.1em;
+  font-weight: 700;
+  color: hsl(229, 23%, 23%);
+}
+.card .person-name .age {
+  font-weight: 400;
+  color: hsl(227, 10%, 46%);
+}
+.card .location {
+  margin-top: 0.5em;
+  font-size: 0.9em;
+  color: hsl(227, 10%, 46%);
+}
+.card .status-card {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 1.5em;
+  border-top: 1px solid hsl(0, 0%, 59%);
+  padding: 1.5em 1.5em 1.5em 1.5em;
+}
+.card .status-card .status {
+  text-align: center;
+}
+.card .status-card .status .status-number {
+  font-weight: 700;
+  font-size: 1.2em;
+  color: hsl(229, 23%, 23%);
+}
+.card .status-card .status .status-name {
+  font-size: 0.7em;
+  letter-spacing: 0.1em;
+  margin-top: 0.2em;
+  color: hsl(0, 0%, 59%);
+}
+
+footer {
+  max-width: 350px;
+  padding: 1em;
+  text-align: center;
+}/*# sourceMappingURL=style.css.map */
