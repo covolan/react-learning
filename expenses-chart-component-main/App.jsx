@@ -86,11 +86,6 @@ function MainCard() {
 
         <div className="charts">
           {dData && <Chart dData={dData} />}
-          {/* <div className="chart">
-            <div className="amount hidden">$99.99</div>
-            <div className="bar"></div>
-            <div className="day">mon</div>
-          </div> */}
         </div>
 
         <div className="main__card-bottom">
