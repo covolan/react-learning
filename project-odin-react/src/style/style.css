@@ -1,0 +1,78 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: bisque;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.eddit-bar {
+  width: 100%;
+}
+.eddit-bar-summary {
+  min-width: 100%;
+}
+
+.btn {
+  padding: 0.5rem;
+  width: 100%;
+  font-weight: 700;
+}
+
+.cv {
+  width: 794px;
+  height: 1123px;
+  background-color: white;
+  padding: 0 2rem;
+  font-family: sans-serif;
+  line-height: 1.5rem;
+}
+.cv .title-bar {
+  background-color: rgb(66, 76, 168);
+  height: 1.6rem;
+  width: 100%;
+  align-self: center;
+}
+.cv .section {
+  border-bottom: 2px solid rgb(66, 76, 168);
+  padding-bottom: 1rem;
+}
+.cv ul {
+  list-style-type: circle;
+  padding-left: 1rem;
+}
+.cv-top__bar {
+  background-color: rgb(66, 76, 168);
+  height: 3rem;
+}
+.cv-name {
+  padding: 1rem 0;
+  border-bottom: 2px solid rgb(66, 76, 168);
+  color: rgb(74, 79, 128);
+}
+.cv-info {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+}
+.cv-info-title {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: max-content auto;
+  padding: 2rem 0 0.5rem;
+  color: rgb(74, 79, 128);
+}
+.cv-info-experience-title {
+  padding-top: 1rem;
+}
+.cv-info-skills, .cv-info-contact, .cv-info-summary, .cv-info-experience, .cv-info-education {
+  height: -moz-min-content;
+  height: min-content;
+}/*# sourceMappingURL=style.css.map */

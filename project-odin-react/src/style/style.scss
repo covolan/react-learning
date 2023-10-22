@@ -1,0 +1,84 @@
+$color: rgb(74, 79, 128);
+$bar-color: rgb(66, 76, 168);
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: bisque;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.eddit-bar {
+    width: 100%;
+    &-summary {
+        min-width: 100%;
+    }
+}
+
+.btn {
+    padding: 0.5rem;
+    width: 100%;
+    font-weight: 700;
+}
+
+.cv {
+    width: 794px;
+    height: 1123px;
+    background-color: white;
+    padding: 0 2rem;
+    font-family: sans-serif;
+    line-height: 1.5rem;
+
+    .title-bar {
+        background-color: $bar-color;
+        height: 1.6rem;
+        width: 100%;
+        align-self: center;
+    }
+
+    .section {
+        border-bottom: 2px solid $bar-color;
+        padding-bottom: 1rem;
+    }
+
+    ul {
+        list-style-type: circle;
+        padding-left: 1rem;
+    }
+
+    &-top__bar {
+        background-color: $bar-color;
+        height: 3rem;
+    }
+    &-name {
+        padding: 1rem 0;
+        border-bottom: 2px solid $bar-color;
+        color: $color;
+    }
+    &-info {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 1rem;
+        &-title {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: max-content auto;
+            padding: 2rem 0 0.5rem;
+            color: $color;
+        }
+        &-experience-title {
+            padding-top: 1rem;
+        }
+        &-skills, &-contact, &-summary, &-experience, &-education {
+            height: min-content;
+        }
+    }
+}
