@@ -13,17 +13,31 @@ main {
   grid-template-columns: 1fr 1fr;
 }
 
-.eddit-bar {
+.edit-bar {
   width: 100%;
 }
-.eddit-bar-summary {
+.edit-bar-summary-text {
   min-width: 100%;
+  max-width: 100%;
+}
+.edit-bar-contact, .edit-bar-experience, .edit-bar-skills, .edit-bar-education, .edit-bar-summary {
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 1rem;
+}
+.edit-bar-contact input, .edit-bar-contact select, .edit-bar-experience input, .edit-bar-experience select, .edit-bar-skills input, .edit-bar-skills select, .edit-bar-education input, .edit-bar-education select, .edit-bar-summary input, .edit-bar-summary select {
+  padding: 0.2rem;
+}
+.edit-bar-contact label, .edit-bar-experience label, .edit-bar-skills label, .edit-bar-education label, .edit-bar-summary label {
+  margin: 0.6rem 0 0.2rem;
 }
 
 .btn {
   padding: 0.5rem;
   width: 100%;
   font-weight: 700;
+  margin: 0.5rem 0;
 }
 
 .cv {

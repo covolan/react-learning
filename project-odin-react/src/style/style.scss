@@ -16,10 +16,25 @@ main {
     grid-template-columns: 1fr 1fr;
 }
 
-.eddit-bar {
+.edit-bar {
     width: 100%;
     &-summary {
-        min-width: 100%;
+        &-text{
+            min-width: 100%;
+            max-width: 100%;
+        }
+    }
+    &-contact, &-experience, &-skills, &-education, &-summary {
+        border-bottom: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        margin: 2rem 1rem;
+        input, select {
+            padding: 0.2rem;
+        }
+        label {
+            margin: 0.6rem 0 0.2rem;
+        }
     }
 }
 
@@ -27,6 +42,7 @@ main {
     padding: 0.5rem;
     width: 100%;
     font-weight: 700;
+    margin: 0.5rem 0;
 }
 
 .cv {
