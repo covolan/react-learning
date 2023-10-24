@@ -22,28 +22,22 @@ const Summary = () => {
   );
 };
 
-const Contact = () => {
+const Contact = ({ contacts }) => {
   return (
     <div className="cv-info-contact section">
       <h2 className="cv-info-title">
         CONTACT<span className="title-bar"></span>
       </h2>
-      <p className="cv-info-paragraph contact-link">
-        {" "}
-        <strong className="contact-title">GitHub: </strong> recusandae
-      </p>
-      <p className="cv-info-paragraph contact-link">
-        {" "}
-        <strong className="contact-title">Email: </strong> recusandae
-      </p>
-      <p className="cv-info-paragraph contact-link">
-        {" "}
-        <strong className="contact-title">Phone: </strong> recusandae
-      </p>
-      <p className="cv-info-paragraph contact-link">
-        {" "}
-        <strong className="contact-title">Linked-In: </strong> recusandae
-      </p>
+      {contacts.map((elem) => {
+        return (
+          <p className="cv-info-paragraph contact-link" key={elem.contactLink}>
+            <strong className="contact-title">{elem.contactName}</strong>
+            <a href={elem.contactLink} target="_blank">
+              {elem.contactText}
+            </a>
+          </p>
+        );
+      })}
     </div>
   );
 };
@@ -115,23 +109,21 @@ const Education = () => {
       <h2 className="cv-info-title">
         EDUCATION<span className="title-bar"></span>
       </h2>
+      <p>Excepturi, Asperiores atque nostrum, 2010</p>
       <p>
-      Excepturi, Asperiores atque nostrum, 2010
-      </p>
-      <p>
-        <strong>Vitae numquam inventore</strong> -  quasi nemo.
+        <strong>Vitae numquam inventore</strong> - quasi nemo.
       </p>
     </div>
   );
 };
 
-const Curriculum = () => {
+const Curriculum = ({ contacts }) => {
   return (
     <div className="cv">
       <TopSection />
       <div className="cv-info">
         <Summary />
-        <Contact />
+        {contacts && <Contact contacts={contacts} />}
         <Experience />
         <Skills />
         <Education />

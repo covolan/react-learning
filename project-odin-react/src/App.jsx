@@ -4,10 +4,18 @@ import "./style/style.css";
 import EditBar from "./components/EditBar";
 
 const App = () => {
+  const [contacts, setContacts] = useState([
+    {
+      contactName: "GitHub: ",
+      contactLink: "/",
+      contactText: "Test",
+    },
+  ]);
+
   return (
     <main>
-      <EditBar />
-      <Curriculum />
+      <EditBar contacts={contacts} setContacts={setContacts} />
+      <Curriculum contacts={contacts} />
     </main>
   );
 };

@@ -1,6 +1,21 @@
 const SummaryForm = () => {
+  const updateSummary = (event) => {
+    const summary = document.querySelector(".summary");
+    const summaryEdit = document.querySelector(".edit-bar-summary-text");
+    event.preventDefault();
+    summary.innerText = summaryEdit.value;
+    summaryEdit.value = "";
+  };
+
+  const editSummary = (event) => {
+    const summary = document.querySelector(".summary");
+    const summaryEdit = document.querySelector(".edit-bar-summary-text");
+    event.preventDefault();
+    summaryEdit.value = summary.innerText;
+  };
+
   return (
-    <form action="" className="edit-bar-summary">
+    <form action="" className="edit-bar-summary" onSubmit={updateSummary}>
       <textarea
         className="edit-bar-summary-text"
         name="summary-form"
@@ -8,15 +23,28 @@ const SummaryForm = () => {
         cols="30"
         rows="10"
       ></textarea>
-      <button className="btn">Apply Summary</button>
-      <button className="btn">Edit summary</button>
+      <input type="submit" className="btn" value="Apply Summary" />
+      <button className="btn" onClick={editSummary}>
+        Edit summary
+      </button>
     </form>
   );
 };
 
-const ContactForm = () => {
+const ContactForm = ({ contacts, setContacts }) => {
+  const addContact = (event) => {
+    event.preventDefault();
+    // const selectElement = document.querySelector("#contact-select");
+    // const name = selectElement.options[selectElement.selectedIndex].text;
+    // const link = document.querySelector("#link");
+    // const linkText = document.querySelector("#link-text");
+    // selectElement.selectedIndex = 0;
+
+    // TODO
+  };
+
   return (
-    <form className="edit-bar-contact">
+    <form className="edit-bar-contact" onSubmit={addContact}>
       <select name="contact-select" id="contact-select">
         <option value="">Choose one</option>
         <option value="github">GitHub</option>
@@ -81,14 +109,18 @@ const EducationForm = () => {
   );
 };
 
-const EditBar = () => {
-  return <div className="edit-bar">
-    <SummaryForm />
-    <ContactForm />
-    <ExperienceForm />
-    <SkillsForm />
-    <EducationForm />
-  </div>;
+const EditBar = ({ contacts, setContacts }) => {
+  return (
+    <div className="edit-bar">
+      <SummaryForm />
+      {contacts && (
+        <ContactForm contacts={contacts} setContacts={setContacts} />
+      )}
+      <ExperienceForm />
+      <SkillsForm />
+      <EducationForm />
+    </div>
+  );
 };
 
 export default EditBar;
