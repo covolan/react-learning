@@ -1,7 +1,9 @@
+import { Fragment, useState } from "react";
+
 const SummaryForm = () => {
   const updateSummary = (event) => {
-    const summary = document.querySelector(".summary");
-    const summaryEdit = document.querySelector(".edit-bar-summary-text");
+    const summary = document.querySelector(".summary"); // Select summary from curriculum
+    const summaryEdit = document.querySelector(".edit-bar-summary-text"); // Select text area
     event.preventDefault();
     summary.innerText = summaryEdit.value;
     summaryEdit.value = "";
@@ -34,20 +36,58 @@ const SummaryForm = () => {
 const ContactForm = ({ contacts, setContacts }) => {
   const addContact = (event) => {
     event.preventDefault();
-    const selectElement = document.querySelector("#contact-select");
-    const name = selectElement.options[selectElement.selectedIndex].text;
-    const link = document.querySelector("#link").value;
-    const linkText = document.querySelector("#link-text").value;
-    selectElement.selectedIndex = 0;
+    const selectElement = document.querySelector("#contact-select"); // select the dropdown
+    const name = selectElement.options[selectElement.selectedIndex].text; // get the selected name
+    const link = document.querySelector("#link"); // get the text from contact link
+    const linkText = document.querySelector("#link-text"); // text from contact text
+
+    if (selectElement.selectedIndex == 0) {
+      return;
+    }
+
+    // Updating the state:
 
     setContacts([
       ...contacts,
       {
         contactName: name,
-        contactLink: link,
-        contactText: linkText,
+        contactLink: link.value,
+        contactText: linkText.value,
       },
     ]);
+
+    // Reseting the form:
+
+    selectElement.selectedIndex = 0;
+    link.value = "";
+    linkText.value = "";
+  };
+
+  const delContact = (name) => {
+    const tempList = contacts.filter((elem) => elem.contactName != name);
+    setContacts(tempList);
+  };
+
+  const editContact = (name) => {
+    const tempContact = contacts.filter((elem) => elem.contactName == name)[0]; // temp contact Object
+    const link = document.querySelector("#link");
+    const linkText = document.querySelector("#link-text");
+    const selectElement = document.querySelector("#contact-select");
+
+    // Setting the form:
+
+    link.value = tempContact.contactLink;
+    linkText.value = tempContact.contactText;
+
+    for (let i = 0; i < selectElement.options.length; i++) {
+      if (selectElement.options[i].text == tempContact.contactName) {
+        selectElement.options[i].selected = true;
+      }
+    }
+
+    // Deleting the contact:
+
+    delContact(name);
   };
 
   return (
@@ -67,7 +107,25 @@ const ContactForm = ({ contacts, setContacts }) => {
         <button className="btn">Apply Contact</button>
       </form>
       <div className="added-contacts">
-
+        {contacts.map((elem) => {
+          return (
+            <Fragment key={elem.contactName}>
+              <p>{elem.contactName}</p>
+              <button
+                className="btn"
+                onClick={() => editContact(elem.contactName)}
+              >
+                Edit Contact
+              </button>
+              <button
+                onClick={() => delContact(elem.contactName)}
+                className="btn"
+              >
+                Delete Contact
+              </button>
+            </Fragment>
+          );
+        })}
       </div>
     </>
   );
@@ -84,6 +142,18 @@ const ExperienceForm = () => {
         <option value=""> Choose one</option>
         <option value="current">Current Job</option>
       </select>
+      <label htmlFor="company">Company Name:</label>
+      <input id="company" type="text" />
+      <label htmlFor="experience-description">
+        Experience description (Separate the items with "--"):
+      </label>
+      <textarea
+        name="experience-description"
+        id="experience-description"
+        cols="30"
+        rows="3"
+        placeholder="-- Exemple text"
+      ></textarea>
       <button className="btn">Apply Experience</button>
     </form>
   );
@@ -114,7 +184,7 @@ const EducationForm = () => {
       </select>
       <label htmlFor="university-name">University name:</label>
       <input id="university-name" type="text" />
-      <label htmlFor="location">Locaiton: </label>
+      <label htmlFor="location">Location: </label>
       <input id="location" type="text" />
       <button className="btn">Apply Education</button>
     </form>

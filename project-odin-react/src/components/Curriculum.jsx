@@ -50,7 +50,7 @@ const Experience = () => {
         <strong>Assumenda quia</strong>, 11/2016 to current.
       </p>
       <p>
-        <strong>Obcaecati</strong> - amet.
+        <strong>Obcaecati</strong>
       </p>
       <ul>
         <li>
@@ -67,7 +67,7 @@ const Experience = () => {
         <strong>Assumenda quia</strong>, 11/2016 to current.
       </p>
       <p>
-        <strong>Obcaecati</strong> - amet.
+        <strong>Obcaecati</strong>
       </p>
 
       <ul>
