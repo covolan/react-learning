@@ -28,16 +28,14 @@ const Contact = ({ contacts }) => {
       <h2 className="cv-info-title">
         CONTACT<span className="title-bar"></span>
       </h2>
-      {contacts.map((elem) => {
-        return (
-          <p className="cv-info-paragraph contact-link" key={elem.contactLink}>
-            <strong className="contact-title">{elem.contactName}</strong>
-            <a href={elem.contactLink} target="_blank">
-              {elem.contactText}
-            </a>
-          </p>
-        );
-      })}
+      {contacts.map((elem) => (
+        <p className="cv-info-paragraph contact-link" key={elem.contactLink}>
+          <strong className="contact-title">{elem.contactName}</strong>
+          <a href={elem.contactLink} target="_blank">
+            {elem.contactText}
+          </a>
+        </p>
+      ))}
     </div>
   );
 };

@@ -34,30 +34,42 @@ const SummaryForm = () => {
 const ContactForm = ({ contacts, setContacts }) => {
   const addContact = (event) => {
     event.preventDefault();
-    // const selectElement = document.querySelector("#contact-select");
-    // const name = selectElement.options[selectElement.selectedIndex].text;
-    // const link = document.querySelector("#link");
-    // const linkText = document.querySelector("#link-text");
-    // selectElement.selectedIndex = 0;
+    const selectElement = document.querySelector("#contact-select");
+    const name = selectElement.options[selectElement.selectedIndex].text;
+    const link = document.querySelector("#link").value;
+    const linkText = document.querySelector("#link-text").value;
+    selectElement.selectedIndex = 0;
 
-    // TODO
+    setContacts([
+      ...contacts,
+      {
+        contactName: name,
+        contactLink: link,
+        contactText: linkText,
+      },
+    ]);
   };
 
   return (
-    <form className="edit-bar-contact" onSubmit={addContact}>
-      <select name="contact-select" id="contact-select">
-        <option value="">Choose one</option>
-        <option value="github">GitHub</option>
-        <option value="email">Email</option>
-        <option value="phone">Phone</option>
-        <option value="linkedin">LinkedIn</option>
-      </select>
-      <label htmlFor="link">Contact link:</label>
-      <input id="link" type="text" />
-      <label htmlFor="link-text">Contact text:</label>
-      <input id="link-text" type="text" />
-      <button className="btn">Apply Contact</button>
-    </form>
+    <>
+      <form className="edit-bar-contact" onSubmit={addContact}>
+        <select name="contact-select" id="contact-select">
+          <option value="">Choose one</option>
+          <option value="github">GitHub</option>
+          <option value="email">Email</option>
+          <option value="phone">Phone</option>
+          <option value="linkedin">LinkedIn</option>
+        </select>
+        <label htmlFor="link">Contact link:</label>
+        <input id="link" type="text" />
+        <label htmlFor="link-text">Contact text:</label>
+        <input id="link-text" type="text" />
+        <button className="btn">Apply Contact</button>
+      </form>
+      <div className="added-contacts">
+
+      </div>
+    </>
   );
 };
 
@@ -113,9 +125,7 @@ const EditBar = ({ contacts, setContacts }) => {
   return (
     <div className="edit-bar">
       <SummaryForm />
-      {contacts && (
-        <ContactForm contacts={contacts} setContacts={setContacts} />
-      )}
+      <ContactForm contacts={contacts} setContacts={setContacts} />
       <ExperienceForm />
       <SkillsForm />
       <EducationForm />
