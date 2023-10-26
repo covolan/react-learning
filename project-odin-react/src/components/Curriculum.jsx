@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 const TopSection = () => {
   return (
     <>
@@ -40,46 +42,32 @@ const Contact = ({ contacts }) => {
   );
 };
 
-const Experience = () => {
+const Experience = ({ experiences }) => {
   return (
     <div className="cv-info-experience section">
       <h2 className="cv-info-title">
         EXPERIENCE<span className="title-bar"></span>
       </h2>
-      <p className="cv-info-experience-title">
-        <strong>Assumenda quia</strong>, 11/2016 to current.
-      </p>
-      <p>
-        <strong>Obcaecati</strong>
-      </p>
-      <ul>
-        <li>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit
-          praesentium obcaecati recusandae.
-        </li>
-        <li>
-          Vitae numquam inventore quasi nemo. Dignissimos sequi, assumenda quia
-          nostrum provident a nemo quis magnam, minus ratione enim.
-        </li>
-      </ul>
 
-      <p className="cv-info-experience-title">
-        <strong>Assumenda quia</strong>, 11/2016 to current.
-      </p>
-      <p>
-        <strong>Obcaecati</strong>
-      </p>
-
-      <ul>
-        <li>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit
-          praesentium obcaecati recusandae.
-        </li>
-        <li>
-          Vitae numquam inventore quasi nemo. Dignissimos sequi, assumenda quia
-          nostrum provident a nemo quis magnam, minus ratione enim.
-        </li>
-      </ul>
+      {experiences.map((elem) => {
+        let strDesc = elem.description.split("--");
+        strDesc.shift();
+        return (
+          <Fragment key={elem.from}>
+            <p className="cv-info-experience-title">
+              <strong>{elem.role}</strong>, {elem.from} to {elem.until}.
+            </p>
+            <p>
+              <strong>{elem.company}</strong>
+            </p>
+            <ul>
+              {strDesc.map((item) => {
+                return <li key={item}>{item}</li>;
+              })}
+            </ul>
+          </Fragment>
+        );
+      })}
     </div>
   );
 };
@@ -115,14 +103,14 @@ const Education = () => {
   );
 };
 
-const Curriculum = ({ contacts }) => {
+const Curriculum = ({ contacts, experiences }) => {
   return (
     <div className="cv">
       <TopSection />
       <div className="cv-info">
         <Summary />
         {contacts && <Contact contacts={contacts} />}
-        <Experience />
+        <Experience experiences={experiences} />
         <Skills />
         <Education />
       </div>

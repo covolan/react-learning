@@ -131,7 +131,7 @@ const ContactForm = ({ contacts, setContacts }) => {
   );
 };
 
-const ExperienceForm = () => {
+const ExperienceForm = ({experiences, setExperiences}) => {
   return (
     <form className="edit-bar-experience">
       <label htmlFor="role">Role: </label>
@@ -191,11 +191,16 @@ const EducationForm = () => {
   );
 };
 
-const EditBar = ({ contacts, setContacts }) => {
+const EditBar = ({ contacts, setContacts, experiences, setExperiences }) => {
   return (
     <div className="edit-bar">
       <SummaryForm />
-      <ContactForm contacts={contacts} setContacts={setContacts} />
+      <ContactForm
+        contacts={contacts}
+        setContacts={setContacts}
+        experiences={experiences}
+        setExperiences={setExperiences}
+      />
       <ExperienceForm />
       <SkillsForm />
       <EducationForm />

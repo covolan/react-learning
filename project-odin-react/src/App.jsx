@@ -24,8 +24,13 @@ const App = () => {
 
   return (
     <main>
-      <EditBar contacts={contacts} setContacts={setContacts} />
-      <Curriculum contacts={contacts} />
+      <EditBar
+        contacts={contacts}
+        setContacts={setContacts}
+        experiences={experiences}
+        setExperiences={setExperiences}
+      />
+      <Curriculum contacts={contacts} experiences={experiences} />
     </main>
   );
 };
