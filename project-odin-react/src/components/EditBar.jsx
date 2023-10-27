@@ -131,13 +131,53 @@ const ContactForm = ({ contacts, setContacts }) => {
   );
 };
 
-const ExperienceForm = ({experiences, setExperiences}) => {
+const ExperienceForm = ({ experiences, setExperiences }) => {
+  const createExp = (event) => {
+    event.preventDefault();
+    const role = document.querySelector("#role");
+    const fromElem = document.querySelector("#from");
+    const tempFrom = fromElem.value.split("-");
+    const from = `${tempFrom[1]}/${tempFrom[0]}`;
+    const to = document.querySelector("#to");
+    const currentSelect = document.querySelector("#current");
+    const company = document.querySelector("#company");
+    const expDesc = document.querySelector("#experience-description");
+    let finalDate;
+
+    if (currentSelect.selectedIndex === 0) {
+      let tempVal = to.value.split("-");
+      finalDate = `${tempVal[1]}/${tempVal[0]}`;
+    } else {
+      finalDate = "current";
+    }
+
+    setExperiences([
+      ...experiences,
+      {
+        role: role.value,
+        from: from,
+        until: finalDate,
+        company: company.value,
+        description: expDesc.value,
+      },
+    ]);
+
+    role.value = "";
+    fromElem.value = "";
+    to.value = "";
+    currentSelect.selectedIndex = 0;
+    company.value = "";
+    expDesc.value = "";
+
+  };
+
   return (
-    <form className="edit-bar-experience">
+    <Fragment>
+    <form className="edit-bar-experience" onSubmit={createExp}>
       <label htmlFor="role">Role: </label>
       <input id="role" type="text" />
-      <label htmlFor="date">Date: from </label>
-      <input type="date" /> to <input type="date" /> or
+      <label htmlFor="from">Date: from </label>
+      <input id="from" type="date" /> to <input id="to" type="date" /> or
       <select name="current" id="current">
         <option value=""> Choose one</option>
         <option value="current">Current Job</option>
@@ -156,6 +196,18 @@ const ExperienceForm = ({experiences, setExperiences}) => {
       ></textarea>
       <button className="btn">Apply Experience</button>
     </form>
+    <div className="experiences">
+      {experiences.map((exp) => {
+        return(
+          <Fragment key={exp.from}>
+            <p>{exp.role} at {exp.company}</p>
+            <button className="btn">Edit experience</button>
+            <button className="btn">Delete experience</button>
+          </Fragment>
+        )
+      })}
+    </div>
+    </Fragment>
   );
 };
 
@@ -195,13 +247,11 @@ const EditBar = ({ contacts, setContacts, experiences, setExperiences }) => {
   return (
     <div className="edit-bar">
       <SummaryForm />
-      <ContactForm
-        contacts={contacts}
-        setContacts={setContacts}
+      <ContactForm contacts={contacts} setContacts={setContacts} />
+      <ExperienceForm
         experiences={experiences}
         setExperiences={setExperiences}
       />
-      <ExperienceForm />
       <SkillsForm />
       <EducationForm />
     </div>
