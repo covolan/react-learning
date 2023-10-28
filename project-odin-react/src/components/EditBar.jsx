@@ -136,8 +136,6 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
     event.preventDefault();
     const role = document.querySelector("#role");
     const fromElem = document.querySelector("#from");
-    const tempFrom = fromElem.value.split("-");
-    const from = `${tempFrom[1]}/${tempFrom[0]}`;
     const to = document.querySelector("#to");
     const currentSelect = document.querySelector("#current");
     const company = document.querySelector("#company");
@@ -145,8 +143,7 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
     let finalDate;
 
     if (currentSelect.selectedIndex === 0) {
-      let tempVal = to.value.split("-");
-      finalDate = `${tempVal[1]}/${tempVal[0]}`;
+      finalDate = to.value;
     } else {
       finalDate = "current";
     }
@@ -155,7 +152,7 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
       ...experiences,
       {
         role: role.value,
-        from: from,
+        from: fromElem.value,
         until: finalDate,
         company: company.value,
         description: expDesc.value,
@@ -168,45 +165,90 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
     currentSelect.selectedIndex = 0;
     company.value = "";
     expDesc.value = "";
+  };
 
+  const editExp = (expCompany) => {
+    const role = document.querySelector("#role");
+    const fromElem = document.querySelector("#from");
+    const to = document.querySelector("#to");
+    const currentSelect = document.querySelector("#current");
+    const company = document.querySelector("#company");
+    const expDesc = document.querySelector("#experience-description");
+
+    const tempList = experiences.filter(
+      (elem) => elem.company === expCompany
+    );
+    console.log(tempList);
+    const tempExp = tempList[0];
+
+    role.value = tempExp.role;
+    fromElem.value = tempExp.from;
+    if (tempExp.until == "current") {
+      currentSelect.selectedIndex = 1;
+    } else {
+      to.value = tempExp.until;
+    }
+    company.value = tempExp.company;
+    expDesc.value = tempExp.description;
+
+    delExp(expCompany);
+  };
+
+  const delExp = (expCompany) => {
+    const tempList = experiences.filter(
+      (elem) => elem.company != expCompany
+    );
+    setExperiences(tempList);
   };
 
   return (
     <Fragment>
-    <form className="edit-bar-experience" onSubmit={createExp}>
-      <label htmlFor="role">Role: </label>
-      <input id="role" type="text" />
-      <label htmlFor="from">Date: from </label>
-      <input id="from" type="date" /> to <input id="to" type="date" /> or
-      <select name="current" id="current">
-        <option value=""> Choose one</option>
-        <option value="current">Current Job</option>
-      </select>
-      <label htmlFor="company">Company Name:</label>
-      <input id="company" type="text" />
-      <label htmlFor="experience-description">
-        Experience description (Separate the items with "--"):
-      </label>
-      <textarea
-        name="experience-description"
-        id="experience-description"
-        cols="30"
-        rows="3"
-        placeholder="-- Exemple text"
-      ></textarea>
-      <button className="btn">Apply Experience</button>
-    </form>
-    <div className="experiences">
-      {experiences.map((exp) => {
-        return(
-          <Fragment key={exp.from}>
-            <p>{exp.role} at {exp.company}</p>
-            <button className="btn">Edit experience</button>
-            <button className="btn">Delete experience</button>
-          </Fragment>
-        )
-      })}
-    </div>
+      <form className="edit-bar-experience" onSubmit={createExp}>
+        <label htmlFor="role">Role: </label>
+        <input id="role" type="text" />
+        <label htmlFor="from">Date: from </label>
+        <input id="from" type="date" /> to <input id="to" type="date" /> or
+        <select name="current" id="current">
+          <option value=""> Choose one</option>
+          <option value="current">Current Job</option>
+        </select>
+        <label htmlFor="company">Company Name:</label>
+        <input id="company" type="text" />
+        <label htmlFor="experience-description">
+          Experience description (Separate the items with "--"):
+        </label>
+        <textarea
+          name="experience-description"
+          id="experience-description"
+          cols="30"
+          rows="3"
+          placeholder="-- Exemple text"
+        ></textarea>
+        <button className="btn">Apply Experience</button>
+      </form>
+      <div className="experiences">
+        {experiences.map((exp) => {
+          return (
+            <Fragment key={exp.from}>
+              <p>
+                {exp.role} at {exp.company}
+              </p>
+              <button
+                className="btn"
+                onClick={() => editExp(exp.company)}
+              >
+                Edit experience
+              </button>
+              <button
+                className="btn"
+                onClick={() => delExp(exp.company)}
+              >
+                Delete experience
+              </button>
+            </Fragment>
+          );
+        })}
+      </div>
     </Fragment>
   );
 };

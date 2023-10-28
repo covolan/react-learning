@@ -14,7 +14,7 @@ const App = () => {
   const [experiences, setExperiences] = useState([
     {
       role: "Assumenda quia",
-      from: "11/2016",
+      from: "2016-11-30",
       until: "current",
       company: "Obcaecati",
       description:

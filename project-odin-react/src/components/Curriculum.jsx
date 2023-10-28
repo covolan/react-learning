@@ -52,10 +52,19 @@ const Experience = ({ experiences }) => {
       {experiences.map((elem) => {
         let strDesc = elem.description.split("--");
         strDesc.shift();
+        let tempFrom = String(elem.from).split("-");
+        let from = `${tempFrom[1]}/${tempFrom[0]}`;
+        let finalDate;
+        if (elem.until != "current") {
+          let tempVal = String(elem.until).split("-");
+          finalDate = `${tempVal[1]}/${tempVal[0]}`;
+        } else {
+          finalDate = elem.until;
+        }
         return (
           <Fragment key={elem.from}>
             <p className="cv-info-experience-title">
-              <strong>{elem.role}</strong>, {elem.from} to {elem.until}.
+              <strong>{elem.role}</strong>, {from} to {finalDate}.
             </p>
             <p>
               <strong>{elem.company}</strong>
