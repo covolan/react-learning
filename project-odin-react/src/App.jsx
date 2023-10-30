@@ -21,6 +21,16 @@ const App = () => {
         "-- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit praesentium obcaecati recusandae. -- Vitae numquam inventore quasi nemo. Dignissimos sequi, assumenda quia nostrum provident a nemo quis magnam, minus ratione enim.",
     },
   ]);
+  const [skills, setSkills] = useState([]);
+  const [education, setEducation] = useState([
+    {
+      title: "Excepturi",
+      role: "Asperiores atque nostrum",
+      conclusion: "22-10-2010",
+      university: "Vitae numquam inventore",
+      location: "quasi nemo",
+    },
+  ]);
 
   return (
     <main>
@@ -29,8 +39,17 @@ const App = () => {
         setContacts={setContacts}
         experiences={experiences}
         setExperiences={setExperiences}
+        skills={skills}
+        setSkills={setSkills}
+        education={education}
+        setEducation={setEducation}
       />
-      <Curriculum contacts={contacts} experiences={experiences} />
+      <Curriculum
+        skills={skills}
+        contacts={contacts}
+        experiences={experiences}
+        education={education}
+      />
     </main>
   );
 };

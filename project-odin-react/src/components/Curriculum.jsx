@@ -81,47 +81,54 @@ const Experience = ({ experiences }) => {
   );
 };
 
-const Skills = () => {
+const Skills = ({ skills }) => {
   return (
     <div className="cv-info-skills section">
       <h2 className="cv-info-title">
         SKILLS<span className="title-bar"></span>
       </h2>
       <ul>
-        <li>Lorem ipsum dolor sit amet.</li>
-        <li>Lorem ipsum dolor sit amet.</li>
-        <li>Lorem ipsum dolor sit amet.</li>
-        <li>Lorem ipsum dolor sit amet.</li>
-        <li>Lorem ipsum dolor sit amet.</li>
+        {skills.map((elem) => (
+          <li key={elem}>{elem}</li>
+        ))}
       </ul>
     </div>
   );
 };
 
-const Education = () => {
+const Education = ({ education }) => {
   return (
     <div className="cv-info-education section">
       <h2 className="cv-info-title">
         EDUCATION<span className="title-bar"></span>
       </h2>
-      <p>Excepturi, Asperiores atque nostrum, 2010</p>
-      <p>
-        <strong>Vitae numquam inventore</strong> - quasi nemo.
-      </p>
+      {education.map((elem) => {
+        let tempDate = elem.conclusion.split("-");
+        return (
+          <Fragment key={elem.title}>
+            <p>
+              {elem.title}, {elem.role}, {tempDate[2]}
+            </p>
+            <p>
+              <strong>{elem.university}</strong> - {elem.location}.
+            </p>
+          </Fragment>
+        );
+      })}
     </div>
   );
 };
 
-const Curriculum = ({ contacts, experiences }) => {
+const Curriculum = ({ contacts, experiences, skills, education }) => {
   return (
     <div className="cv">
       <TopSection />
       <div className="cv-info">
         <Summary />
-        {contacts && <Contact contacts={contacts} />}
+        <Contact contacts={contacts} />
         <Experience experiences={experiences} />
-        <Skills />
-        <Education />
+        <Skills skills={skills} />
+        <Education education={education} />
       </div>
     </div>
   );

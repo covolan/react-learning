@@ -134,6 +134,9 @@ const ContactForm = ({ contacts, setContacts }) => {
 const ExperienceForm = ({ experiences, setExperiences }) => {
   const createExp = (event) => {
     event.preventDefault();
+
+    // Getting the elements from page
+
     const role = document.querySelector("#role");
     const fromElem = document.querySelector("#from");
     const to = document.querySelector("#to");
@@ -142,11 +145,15 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
     const expDesc = document.querySelector("#experience-description");
     let finalDate;
 
+    // Logic to select date until or current job
+
     if (currentSelect.selectedIndex === 0) {
       finalDate = to.value;
     } else {
       finalDate = "current";
     }
+
+    // Setting the experiences based on the inputed values
 
     setExperiences([
       ...experiences,
@@ -159,6 +166,8 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
       },
     ]);
 
+    // Reseting the form
+
     role.value = "";
     fromElem.value = "";
     to.value = "";
@@ -168,6 +177,8 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
   };
 
   const editExp = (expCompany) => {
+    // Getting the elements from the page
+
     const role = document.querySelector("#role");
     const fromElem = document.querySelector("#from");
     const to = document.querySelector("#to");
@@ -175,11 +186,12 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
     const company = document.querySelector("#company");
     const expDesc = document.querySelector("#experience-description");
 
-    const tempList = experiences.filter(
-      (elem) => elem.company === expCompany
-    );
-    console.log(tempList);
+    // Setting a temporary list and object
+
+    const tempList = experiences.filter((elem) => elem.company === expCompany);
     const tempExp = tempList[0];
+
+    // getting the data from object an putting on the form
 
     role.value = tempExp.role;
     fromElem.value = tempExp.from;
@@ -191,13 +203,16 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
     company.value = tempExp.company;
     expDesc.value = tempExp.description;
 
+    // Deleting the object
+
     delExp(expCompany);
   };
 
+  // Function to delete the object
+  // TODO: Better logic to check the selected object
+
   const delExp = (expCompany) => {
-    const tempList = experiences.filter(
-      (elem) => elem.company != expCompany
-    );
+    const tempList = experiences.filter((elem) => elem.company != expCompany);
     setExperiences(tempList);
   };
 
@@ -233,16 +248,10 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
               <p>
                 {exp.role} at {exp.company}
               </p>
-              <button
-                className="btn"
-                onClick={() => editExp(exp.company)}
-              >
+              <button className="btn" onClick={() => editExp(exp.company)}>
                 Edit experience
               </button>
-              <button
-                className="btn"
-                onClick={() => delExp(exp.company)}
-              >
+              <button className="btn" onClick={() => delExp(exp.company)}>
                 Delete experience
               </button>
             </Fragment>
@@ -253,19 +262,94 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
   );
 };
 
-const SkillsForm = () => {
+const SkillsForm = ({ skills, setSkills }) => {
+  const addSkill = (event) => {
+    event.preventDefault();
+    const skillInput = document.querySelector("#skill");
+
+    setSkills([...skills, skillInput.value]);
+
+    skillInput.value = "";
+  };
+
+  const editSkill = (selectedSkill) => {
+    const skillInput = document.querySelector("#skill");
+    skillInput.value = selectedSkill;
+
+    delSkill(selectedSkill);
+  };
+
+  const delSkill = (selectedSkill) => {
+    const tempSkills = skills.filter((elem) => elem != selectedSkill);
+    setSkills([tempSkills]);
+    console.log(skills, skills.length, skills[0]);
+  };
+
   return (
-    <form className="edit-bar-skills">
-      <label htmlFor="skill">Skill name: </label>
-      <input id="skill" type="text" />
-      <button className="btn">Apply Skill</button>
-    </form>
+    <Fragment>
+      <form className="edit-bar-skills" onSubmit={addSkill}>
+        <label htmlFor="skill">Skill name: </label>
+        <input id="skill" type="text" />
+        <button className="btn">Apply Skill</button>
+      </form>
+      <div className="skills">
+        {skills.map((elem) => {
+          return (
+            <Fragment key={elem}>
+              <p>{elem}</p>
+              <button className="btn" onClick={() => editSkill(elem)}>
+                Edit Skill
+              </button>
+              <button className="btn" onClick={() => delSkill(elem)}>
+                Delete Skill
+              </button>
+            </Fragment>
+          );
+        })}
+      </div>
+    </Fragment>
   );
 };
 
-const EducationForm = () => {
+const EducationForm = ({education, setEducation}) => {
+  const addEducation = (event) => {
+    event.preventDefault();
+
+    const title = document.querySelector("#title");
+    const role = document.querySelector("#education-role");
+    const date = document.querySelector("#date-conclusion");
+    const dateCurrent = document.querySelector("#date-current");
+    const university = document.querySelector("#university-name");
+    const location = document.querySelector("#location");
+    let finalDate;
+
+    if (dateCurrent.selectedIndex != 0) {
+      finalDate = date.value;
+    } else {
+      finalDate = "current";
+    }
+
+    setEducation([
+      ...education,
+      {
+        title: title.value,
+        role: role.value,
+        conclusion: finalDate,
+        university: university.value,
+        location: location.value,
+      }
+    ])
+
+    title.value = "";
+    role.value = "";
+    date.value = "";
+    dateCurrent.selectedIndex = 0;
+    university.value = "";
+    location.value = "";
+  }
+  
   return (
-    <form className="edit-bar-education">
+    <form className="edit-bar-education" onSubmit={addEducation}>
       <label htmlFor="title">Title: </label>
       <input id="title" type="text" />
       <label htmlFor="education-role">Role: </label>
@@ -285,7 +369,16 @@ const EducationForm = () => {
   );
 };
 
-const EditBar = ({ contacts, setContacts, experiences, setExperiences }) => {
+const EditBar = ({
+  contacts,
+  setContacts,
+  experiences,
+  setExperiences,
+  skills,
+  setSkills,
+  education,
+  setEducation,
+}) => {
   return (
     <div className="edit-bar">
       <SummaryForm />
@@ -294,8 +387,8 @@ const EditBar = ({ contacts, setContacts, experiences, setExperiences }) => {
         experiences={experiences}
         setExperiences={setExperiences}
       />
-      <SkillsForm />
-      <EducationForm />
+      <SkillsForm skills={skills} setSkills={setSkills} />
+      <EducationForm education={education} setEducation={setEducation} />
     </div>
   );
 };
