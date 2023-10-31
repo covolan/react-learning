@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Employee from "./components/Employee";
-import "./index.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const App = () => {
   const [employees, setEmployees] = useState([
@@ -49,15 +48,28 @@ const App = () => {
     },
   ]);
 
+  function updateEmployee(id, newName, newRole) {
+    const updatedEmployees = employees.map((emp) => {
+      if(id == emp.id) {
+        return {...emp, name: newName, role: newRole};
+      } else {
+        return emp;
+      }
+    })
+    setEmployees(updatedEmployees);
+  }
+
   return (
     <div className="flex flex-wrap justify-center">
       {employees.map((emp) => {
         return (
           <Employee
             key={emp.id}
+            id={emp.id}
             name={emp.name}
             role={emp.role}
             img={emp.img}
+            updateEmployee={updateEmployee}
           />
         );
       })}
