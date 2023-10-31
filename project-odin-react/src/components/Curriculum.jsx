@@ -103,11 +103,17 @@ const Education = ({ education }) => {
         EDUCATION<span className="title-bar"></span>
       </h2>
       {education.map((elem) => {
-        let tempDate = elem.conclusion.split("-");
+        let tempDate;
+        if (elem.conclusion == "current") {
+          tempDate = elem.conclusion;
+        } else {
+          tempDate = elem.conclusion.split("-");
+          tempDate = tempDate[0];
+        }
         return (
           <Fragment key={elem.title}>
             <p>
-              {elem.title}, {elem.role}, {tempDate[2]}
+              {elem.title}, {elem.role}, {tempDate}
             </p>
             <p>
               <strong>{elem.university}</strong> - {elem.location}.

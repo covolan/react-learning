@@ -106,23 +106,25 @@ const ContactForm = ({ contacts, setContacts }) => {
         <input id="link-text" type="text" />
         <button className="btn">Apply Contact</button>
       </form>
-      <div className="added-contacts">
+      <div className="contacts">
         {contacts.map((elem) => {
           return (
             <Fragment key={elem.contactName}>
               <p>{elem.contactName}</p>
-              <button
-                className="btn"
-                onClick={() => editContact(elem.contactName)}
-              >
-                Edit Contact
-              </button>
-              <button
-                onClick={() => delContact(elem.contactName)}
-                className="btn"
-              >
-                Delete Contact
-              </button>
+              <div className="btn-wrap">
+                <button
+                  className="btn"
+                  onClick={() => editContact(elem.contactName)}
+                >
+                  Edit Contact
+                </button>
+                <button
+                  onClick={() => delContact(elem.contactName)}
+                  className="btn"
+                >
+                  Delete Contact
+                </button>
+              </div>
             </Fragment>
           );
         })}
@@ -236,7 +238,7 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
           name="experience-description"
           id="experience-description"
           cols="30"
-          rows="3"
+          rows="10"
           placeholder="-- Exemple text"
         ></textarea>
         <button className="btn">Apply Experience</button>
@@ -248,12 +250,14 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
               <p>
                 {exp.role} at {exp.company}
               </p>
-              <button className="btn" onClick={() => editExp(exp.company)}>
-                Edit experience
-              </button>
-              <button className="btn" onClick={() => delExp(exp.company)}>
-                Delete experience
-              </button>
+              <div className="btn-wrap">
+                <button className="btn" onClick={() => editExp(exp.company)}>
+                  Edit experience
+                </button>
+                <button className="btn" onClick={() => delExp(exp.company)}>
+                  Delete experience
+                </button>
+              </div>
             </Fragment>
           );
         })}
@@ -265,11 +269,11 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
 const SkillsForm = ({ skills, setSkills }) => {
   const addSkill = (event) => {
     event.preventDefault();
-    const skillInput = document.querySelector("#skill");
+    const skillInput = document.querySelector("#skill"); // Document input
 
-    setSkills([...skills, skillInput.value]);
+    setSkills([...skills, skillInput.value]); // setting the skills
 
-    skillInput.value = "";
+    skillInput.value = ""; // Reseting the input
   };
 
   const editSkill = (selectedSkill) => {
@@ -282,7 +286,6 @@ const SkillsForm = ({ skills, setSkills }) => {
   const delSkill = (selectedSkill) => {
     const tempSkills = skills.filter((elem) => elem != selectedSkill);
     setSkills([tempSkills]);
-    console.log(skills, skills.length, skills[0]);
   };
 
   return (
@@ -297,12 +300,14 @@ const SkillsForm = ({ skills, setSkills }) => {
           return (
             <Fragment key={elem}>
               <p>{elem}</p>
-              <button className="btn" onClick={() => editSkill(elem)}>
-                Edit Skill
-              </button>
-              <button className="btn" onClick={() => delSkill(elem)}>
-                Delete Skill
-              </button>
+              <div className="btn-wrap">
+                <button className="btn" onClick={() => editSkill(elem)}>
+                  Edit Skill
+                </button>
+                <button className="btn" onClick={() => delSkill(elem)}>
+                  Delete Skill
+                </button>
+              </div>
             </Fragment>
           );
         })}
@@ -311,9 +316,11 @@ const SkillsForm = ({ skills, setSkills }) => {
   );
 };
 
-const EducationForm = ({education, setEducation}) => {
+const EducationForm = ({ education, setEducation }) => {
   const addEducation = (event) => {
     event.preventDefault();
+
+    // Getting the document elements
 
     const title = document.querySelector("#title");
     const role = document.querySelector("#education-role");
@@ -323,11 +330,15 @@ const EducationForm = ({education, setEducation}) => {
     const location = document.querySelector("#location");
     let finalDate;
 
-    if (dateCurrent.selectedIndex != 0) {
+    // Date logic
+
+    if (dateCurrent.selectedIndex == 0) {
       finalDate = date.value;
     } else {
       finalDate = "current";
     }
+
+    // Setting the state
 
     setEducation([
       ...education,
@@ -337,8 +348,10 @@ const EducationForm = ({education, setEducation}) => {
         conclusion: finalDate,
         university: university.value,
         location: location.value,
-      }
-    ])
+      },
+    ]);
+
+    // Reseting the input
 
     title.value = "";
     role.value = "";
@@ -346,26 +359,74 @@ const EducationForm = ({education, setEducation}) => {
     dateCurrent.selectedIndex = 0;
     university.value = "";
     location.value = "";
-  }
-  
+  };
+
+  const editEducation = (eduTitle) => {
+    let tempEdu = education.filter((edu) => edu.title == eduTitle)[0];
+
+    const title = document.querySelector("#title");
+    const role = document.querySelector("#education-role");
+    const date = document.querySelector("#date-conclusion");
+    const dateCurrent = document.querySelector("#date-current");
+    const university = document.querySelector("#university-name");
+    const location = document.querySelector("#location");
+
+    title.value = tempEdu.title;
+    role.value = tempEdu.role;
+    university.value = tempEdu.university;
+    location.value = tempEdu.location;
+    if (tempEdu.conclusion == "current") {
+      dateCurrent.selectedIndex = 1;
+    } else {
+      date.value = tempEdu.conclusion;
+    }
+
+    delEducation(eduTitle);
+  };
+
+  const delEducation = (eduTitle) => {
+    setEducation(education.filter((edu) => edu.title != eduTitle));
+  };
+
   return (
-    <form className="edit-bar-education" onSubmit={addEducation}>
-      <label htmlFor="title">Title: </label>
-      <input id="title" type="text" />
-      <label htmlFor="education-role">Role: </label>
-      <input id="education-role" type="text" />
-      <label htmlFor="date-conclusion">Date of conclusion: </label>
-      <input id="date-conclusion" type="date" /> or{" "}
-      <select name="date-current" id="date-current">
-        <option value="">Choose one</option>
-        <option value="current">current</option>
-      </select>
-      <label htmlFor="university-name">University name:</label>
-      <input id="university-name" type="text" />
-      <label htmlFor="location">Location: </label>
-      <input id="location" type="text" />
-      <button className="btn">Apply Education</button>
-    </form>
+    <Fragment>
+      <form className="edit-bar-education" onSubmit={addEducation}>
+        <label htmlFor="title">Title: </label>
+        <input id="title" type="text" />
+        <label htmlFor="education-role">Role: </label>
+        <input id="education-role" type="text" />
+        <label htmlFor="date-conclusion">Date of conclusion: </label>
+        <input id="date-conclusion" type="date" /> or{" "}
+        <select name="date-current" id="date-current">
+          <option value="">Choose one</option>
+          <option value="current">current</option>
+        </select>
+        <label htmlFor="university-name">University name:</label>
+        <input id="university-name" type="text" />
+        <label htmlFor="location">Location: </label>
+        <input id="location" type="text" />
+        <button className="btn">Apply Education</button>
+      </form>
+      <div className="education">
+        {education.map((edu) => {
+          return (
+            <Fragment key={edu.title + edu.role}>
+              <p>
+                {edu.title}, {edu.role}
+              </p>
+              <div className="btn-wrap">
+                <button className="btn" onClick={() => editEducation(edu.title)}>
+                  Edit Education
+                </button>
+                <button className="btn" onClick={() => delEducation(edu.title)}>
+                  Delete Education
+                </button>
+              </div>
+            </Fragment>
+          );
+        })}
+      </div>
+    </Fragment>
   );
 };
 

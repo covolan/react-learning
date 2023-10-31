@@ -2,99 +2,123 @@ $color: rgb(74, 79, 128);
 $bar-color: rgb(66, 76, 168);
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: bisque;
+  background-color: rgb(231, 219, 204);
 }
 
 main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 .edit-bar {
-    width: 100%;
-    &-summary {
-        &-text{
-            min-width: 100%;
-            max-width: 100%;
-        }
+    textarea {
+        resize: none;
     }
-    &-contact, &-experience, &-skills, &-education, &-summary {
-        border-bottom: 1px solid black;
-        display: flex;
-        flex-direction: column;
-        margin: 2rem 1rem;
-        input, select {
-            padding: 0.2rem;
-        }
-        label {
-            margin: 0.6rem 0 0.2rem;
-        }
+  font-family: sans-serif;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  &-summary {
+    &-text {
+      min-width: 100%;
+      max-width: 100%;
     }
+  }
+  &-contact,
+  &-experience,
+  &-skills,
+  &-education,
+  &-summary {
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 1rem;
+    input,
+    select {
+      padding: 0.2rem;
+    }
+    label {
+      margin: 0.6rem 0 0.2rem;
+    }
+  }
 }
 
 .btn {
-    padding: 0.5rem;
-    width: 100%;
-    font-weight: 700;
-    margin: 0.5rem 0;
+  padding: 0.5rem;
+  width: 100%;
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+
+.btn-wrap {
+    display: flex;
+    flex-direction: row;
+}
+
+.contact, .experiences, .skills, .education {
+    height: max-content;
 }
 
 .cv {
-    width: 794px;
-    height: 1123px;
-    background-color: white;
-    padding: 0 2rem;
-    font-family: sans-serif;
-    line-height: 1.5rem;
+  width: 794px;
+  height: 1123px;
+  background-color: white;
+  padding: 0 2rem;
+  font-family: sans-serif;
+  line-height: 1.5rem;
 
-    .title-bar {
-        background-color: $bar-color;
-        height: 1.6rem;
-        width: 100%;
-        align-self: center;
-    }
+  .title-bar {
+    background-color: $bar-color;
+    height: 1.6rem;
+    width: 100%;
+    align-self: center;
+  }
 
-    .section {
-        border-bottom: 2px solid $bar-color;
-        padding-bottom: 1rem;
-    }
+  .section {
+    border-bottom: 2px solid $bar-color;
+    padding-bottom: 1rem;
+  }
 
-    ul {
-        list-style-type: circle;
-        padding-left: 1rem;
-    }
+  ul {
+    list-style-type: circle;
+    padding-left: 1rem;
+  }
 
-    &-top__bar {
-        background-color: $bar-color;
-        height: 3rem;
+  &-top__bar {
+    background-color: $bar-color;
+    height: 3rem;
+  }
+  &-name {
+    padding: 1rem 0;
+    border-bottom: 2px solid $bar-color;
+    color: $color;
+  }
+  &-info {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+    &-title {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: max-content auto;
+      padding: 2rem 0 0.5rem;
+      color: $color;
     }
-    &-name {
-        padding: 1rem 0;
-        border-bottom: 2px solid $bar-color;
-        color: $color;
+    &-experience-title {
+      padding-top: 1rem;
     }
-    &-info {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 1rem;
-        &-title {
-            display: grid;
-            gap: 1rem;
-            grid-template-columns: max-content auto;
-            padding: 2rem 0 0.5rem;
-            color: $color;
-        }
-        &-experience-title {
-            padding-top: 1rem;
-        }
-        &-skills, &-contact, &-summary, &-experience, &-education {
-            height: min-content;
-        }
+    &-skills,
+    &-contact,
+    &-summary,
+    &-experience,
+    &-education {
+      height: min-content;
     }
+  }
 }

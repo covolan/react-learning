@@ -5,16 +5,22 @@
 }
 
 body {
-  background-color: bisque;
+  background-color: rgb(231, 219, 204);
 }
 
 main {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 .edit-bar {
+  font-family: sans-serif;
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.edit-bar textarea {
+  resize: none;
 }
 .edit-bar-summary-text {
   min-width: 100%;
@@ -26,7 +32,12 @@ main {
   flex-direction: column;
   margin: 2rem 1rem;
 }
-.edit-bar-contact input, .edit-bar-contact select, .edit-bar-experience input, .edit-bar-experience select, .edit-bar-skills input, .edit-bar-skills select, .edit-bar-education input, .edit-bar-education select, .edit-bar-summary input, .edit-bar-summary select {
+.edit-bar-contact input,
+.edit-bar-contact select, .edit-bar-experience input,
+.edit-bar-experience select, .edit-bar-skills input,
+.edit-bar-skills select, .edit-bar-education input,
+.edit-bar-education select, .edit-bar-summary input,
+.edit-bar-summary select {
   padding: 0.2rem;
 }
 .edit-bar-contact label, .edit-bar-experience label, .edit-bar-skills label, .edit-bar-education label, .edit-bar-summary label {
@@ -38,6 +49,16 @@ main {
   width: 100%;
   font-weight: 700;
   margin: 0.5rem 0;
+}
+
+.btn-wrap {
+  display: flex;
+  flex-direction: row;
+}
+
+.contact, .experiences, .skills, .education {
+  height: -moz-max-content;
+  height: max-content;
 }
 
 .cv {

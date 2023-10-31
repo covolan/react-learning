@@ -26,7 +26,7 @@ const App = () => {
     {
       title: "Excepturi",
       role: "Asperiores atque nostrum",
-      conclusion: "22-10-2010",
+      conclusion: "2010-10-22",
       university: "Vitae numquam inventore",
       location: "quasi nemo",
     },
