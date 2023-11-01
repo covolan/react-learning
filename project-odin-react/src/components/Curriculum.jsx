@@ -32,8 +32,8 @@ const Contact = ({ contacts }) => {
       </h2>
       {contacts.map((elem) => (
         <p className="cv-info-paragraph contact-link" key={elem.contactLink}>
-          <strong className="contact-title">{elem.contactName}</strong>
-          <a href={elem.contactLink} target="_blank">
+          <strong className="contact-title">{elem.contactName}: </strong>
+          <a href={elem.contactLink} className="link" target="_blank">
             {elem.contactText}
           </a>
         </p>

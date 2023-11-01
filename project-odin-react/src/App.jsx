@@ -7,9 +7,14 @@ const App = () => {
   const [contacts, setContacts] = useState([
     {
       contactName: "GitHub",
-      contactLink: "/",
-      contactText: "Test",
+      contactLink: "https://github.com/covolan",
+      contactText: "github.com/covolan",
     },
+    {
+      contactName: "LinkedIn",
+      contactLink: "https://www.linkedin.com/in/alexandre-covolan/",
+      contactText: "in/alexandre-covolan",
+    }
   ]);
   const [experiences, setExperiences] = useState([
     {
@@ -20,8 +25,16 @@ const App = () => {
       description:
         "-- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit praesentium obcaecati recusandae. -- Vitae numquam inventore quasi nemo. Dignissimos sequi, assumenda quia nostrum provident a nemo quis magnam, minus ratione enim.",
     },
+    {
+      role: "Amet consectetur",
+      from: "2010-11-30",
+      until: "2016-11-30",
+      company: "Praesentium",
+      description:
+        "-- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit praesentium obcaecati recusandae. -- Vitae numquam inventore quasi nemo. Dignissimos sequi, assumenda quia nostrum provident a nemo quis magnam, minus ratione enim.",
+    }
   ]);
-  const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState(["HTML", "Sass", "React.js", "JavaScript"]);
   const [education, setEducation] = useState([
     {
       title: "Excepturi",

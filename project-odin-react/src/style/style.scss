@@ -8,22 +8,31 @@ $bar-color: rgb(66, 76, 168);
 }
 
 body {
-  background-color: rgb(231, 219, 204);
+  background-color: rgb(237, 239, 255);
+  display: flex;
+  justify-content: center;
 }
 
 main {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .edit-bar {
-    textarea {
-        resize: none;
-    }
+  max-width: 600px;
+  justify-self: center;
+  h1 {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid black;
+  }
+  textarea {
+    resize: none;
+  }
   font-family: sans-serif;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   &-summary {
     &-text {
       min-width: 100%;
@@ -35,13 +44,15 @@ main {
   &-skills,
   &-education,
   &-summary {
-    border-bottom: 1px solid black;
+    // border-bottom: 1px solid black;
     display: flex;
     flex-direction: column;
-    margin: 2rem 1rem;
+    margin: 1rem 1rem;
     input,
     select {
-      padding: 0.2rem;
+      padding: 0.5rem;
+      border-radius: 0.4rem;
+      border: 1px solid black;
     }
     label {
       margin: 0.6rem 0 0.2rem;
@@ -49,20 +60,52 @@ main {
   }
 }
 
+textarea {
+  padding: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.link  {
+  text-decoration: none;
+  color: black;
+}
+
 .btn {
   padding: 0.5rem;
   width: 100%;
+  font-size: 1rem;
+  color: white;
   font-weight: 700;
   margin: 0.5rem 0;
+  border-radius: 0.4rem;
+  border: none;
+  cursor: pointer;
+  background-color: $bar-color;
+  transition: 0.2s ease;
+  &:hover {
+    background-color: rgba(66, 76, 168, 0.822);
+  }
+}
+
+.item {
+  background-color: white;
+  border-radius: 0.4rem;
+  box-shadow: 0 5px 10px rgba(66, 76, 168, 0.315);
+  padding: 0.5rem;
+}
+
+.experiences, .contacts, .skills, .education {
+  margin: 1rem;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
 }
 
 .btn-wrap {
-    display: flex;
-    flex-direction: row;
-}
-
-.contact, .experiences, .skills, .education {
-    height: max-content;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
 }
 
 .cv {

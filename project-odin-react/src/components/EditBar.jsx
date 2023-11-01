@@ -17,19 +17,24 @@ const SummaryForm = () => {
   };
 
   return (
-    <form action="" className="edit-bar-summary" onSubmit={updateSummary}>
-      <textarea
-        className="edit-bar-summary-text"
-        name="summary-form"
-        id="summary-form"
-        cols="30"
-        rows="10"
-      ></textarea>
-      <input type="submit" className="btn" value="Apply Summary" />
-      <button className="btn" onClick={editSummary}>
-        Edit summary
-      </button>
-    </form>
+    <Fragment>
+      <h1>Summary</h1>
+      <form action="" className="edit-bar-summary" onSubmit={updateSummary}>
+        <textarea
+          className="edit-bar-summary-text"
+          name="summary-form"
+          id="summary-form"
+          cols="30"
+          rows="10"
+        ></textarea>
+        <div className="btn-wrap">
+          <button className="btn">Apply Summary</button>
+          <button className="btn" onClick={editSummary}>
+            Edit summary
+          </button>
+        </div>
+      </form>
+    </Fragment>
   );
 };
 
@@ -92,7 +97,9 @@ const ContactForm = ({ contacts, setContacts }) => {
 
   return (
     <>
+      <h1>Contact</h1>
       <form className="edit-bar-contact" onSubmit={addContact}>
+        <label htmlFor="contact-select">Contact Type:</label>
         <select name="contact-select" id="contact-select">
           <option value="">Choose one</option>
           <option value="github">GitHub</option>
@@ -109,7 +116,7 @@ const ContactForm = ({ contacts, setContacts }) => {
       <div className="contacts">
         {contacts.map((elem) => {
           return (
-            <Fragment key={elem.contactName}>
+            <div className="item" key={elem.contactName}>
               <p>{elem.contactName}</p>
               <div className="btn-wrap">
                 <button
@@ -125,7 +132,7 @@ const ContactForm = ({ contacts, setContacts }) => {
                   Delete Contact
                 </button>
               </div>
-            </Fragment>
+            </div>
           );
         })}
       </div>
@@ -220,6 +227,7 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
 
   return (
     <Fragment>
+      <h1>Experience</h1>
       <form className="edit-bar-experience" onSubmit={createExp}>
         <label htmlFor="role">Role: </label>
         <input id="role" type="text" />
@@ -246,7 +254,7 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
       <div className="experiences">
         {experiences.map((exp) => {
           return (
-            <Fragment key={exp.from}>
+            <div className="item" key={exp.from}>
               <p>
                 {exp.role} at {exp.company}
               </p>
@@ -258,7 +266,7 @@ const ExperienceForm = ({ experiences, setExperiences }) => {
                   Delete experience
                 </button>
               </div>
-            </Fragment>
+            </div>
           );
         })}
       </div>
@@ -285,11 +293,15 @@ const SkillsForm = ({ skills, setSkills }) => {
 
   const delSkill = (selectedSkill) => {
     const tempSkills = skills.filter((elem) => elem != selectedSkill);
-    setSkills([tempSkills]);
+    console.log(tempSkills);
+    setSkills(tempSkills);
   };
 
   return (
     <Fragment>
+      <h1>
+        Skills
+      </h1>
       <form className="edit-bar-skills" onSubmit={addSkill}>
         <label htmlFor="skill">Skill name: </label>
         <input id="skill" type="text" />
@@ -298,7 +310,7 @@ const SkillsForm = ({ skills, setSkills }) => {
       <div className="skills">
         {skills.map((elem) => {
           return (
-            <Fragment key={elem}>
+            <div className="item" key={elem}>
               <p>{elem}</p>
               <div className="btn-wrap">
                 <button className="btn" onClick={() => editSkill(elem)}>
@@ -308,7 +320,7 @@ const SkillsForm = ({ skills, setSkills }) => {
                   Delete Skill
                 </button>
               </div>
-            </Fragment>
+            </div>
           );
         })}
       </div>
@@ -390,6 +402,7 @@ const EducationForm = ({ education, setEducation }) => {
 
   return (
     <Fragment>
+      <h1>Education</h1>
       <form className="edit-bar-education" onSubmit={addEducation}>
         <label htmlFor="title">Title: </label>
         <input id="title" type="text" />
@@ -410,19 +423,22 @@ const EducationForm = ({ education, setEducation }) => {
       <div className="education">
         {education.map((edu) => {
           return (
-            <Fragment key={edu.title + edu.role}>
+            <div className="item" key={edu.title + edu.role}>
               <p>
                 {edu.title}, {edu.role}
               </p>
               <div className="btn-wrap">
-                <button className="btn" onClick={() => editEducation(edu.title)}>
+                <button
+                  className="btn"
+                  onClick={() => editEducation(edu.title)}
+                >
                   Edit Education
                 </button>
                 <button className="btn" onClick={() => delEducation(edu.title)}>
                   Delete Education
                 </button>
               </div>
-            </Fragment>
+            </div>
           );
         })}
       </div>

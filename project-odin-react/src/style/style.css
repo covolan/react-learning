@@ -5,19 +5,28 @@
 }
 
 body {
-  background-color: rgb(231, 219, 204);
+  background-color: rgb(237, 239, 255);
+  display: flex;
+  justify-content: center;
 }
 
 main {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .edit-bar {
+  max-width: 600px;
+  justify-self: center;
   font-family: sans-serif;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
+}
+.edit-bar h1 {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid black;
 }
 .edit-bar textarea {
   resize: none;
@@ -27,10 +36,9 @@ main {
   max-width: 100%;
 }
 .edit-bar-contact, .edit-bar-experience, .edit-bar-skills, .edit-bar-education, .edit-bar-summary {
-  border-bottom: 1px solid black;
   display: flex;
   flex-direction: column;
-  margin: 2rem 1rem;
+  margin: 1rem 1rem;
 }
 .edit-bar-contact input,
 .edit-bar-contact select, .edit-bar-experience input,
@@ -38,27 +46,60 @@ main {
 .edit-bar-skills select, .edit-bar-education input,
 .edit-bar-education select, .edit-bar-summary input,
 .edit-bar-summary select {
-  padding: 0.2rem;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  border: 1px solid black;
 }
 .edit-bar-contact label, .edit-bar-experience label, .edit-bar-skills label, .edit-bar-education label, .edit-bar-summary label {
   margin: 0.6rem 0 0.2rem;
 }
 
+textarea {
+  padding: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
 .btn {
   padding: 0.5rem;
   width: 100%;
+  font-size: 1rem;
+  color: white;
   font-weight: 700;
   margin: 0.5rem 0;
+  border-radius: 0.4rem;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(66, 76, 168);
+  transition: 0.2s ease;
+}
+.btn:hover {
+  background-color: rgba(66, 76, 168, 0.822);
+}
+
+.item {
+  background-color: white;
+  border-radius: 0.4rem;
+  box-shadow: 0 5px 10px rgba(66, 76, 168, 0.315);
+  padding: 0.5rem;
+}
+
+.experiences, .contacts, .skills, .education {
+  margin: 1rem;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
 }
 
 .btn-wrap {
   display: flex;
   flex-direction: row;
-}
-
-.contact, .experiences, .skills, .education {
-  height: -moz-max-content;
-  height: max-content;
+  gap: 0.5rem;
 }
 
 .cv {
