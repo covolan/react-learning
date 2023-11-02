@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Employee from "./components/Employee";
-
+import AddEmployee from "./components/AddEmployee";
 
 const App = () => {
   const [employees, setEmployees] = useState([
@@ -50,30 +50,43 @@ const App = () => {
 
   function updateEmployee(id, newName, newRole) {
     const updatedEmployees = employees.map((emp) => {
-      if(id == emp.id) {
-        return {...emp, name: newName, role: newRole};
+      if (id == emp.id) {
+        return { ...emp, name: newName, role: newRole };
       } else {
         return emp;
       }
-    })
+    });
     setEmployees(updatedEmployees);
   }
 
+  function newEmployee(name, role, img) {
+    let newEmp = {
+      id: crypto.randomUUID(),
+      name: name,
+      img: img,
+      role: role
+    }
+    setEmployees([...employees, newEmp])
+  }
+
   return (
-    <div className="flex flex-wrap justify-center">
-      {employees.map((emp) => {
-        return (
-          <Employee
-            key={emp.id}
-            id={emp.id}
-            name={emp.name}
-            role={emp.role}
-            img={emp.img}
-            updateEmployee={updateEmployee}
-          />
-        );
-      })}
-    </div>
+    <>
+      <div className="flex flex-wrap justify-center">
+        {employees.map((emp) => {
+          return (
+            <Employee
+              key={emp.id}
+              id={emp.id}
+              name={emp.name}
+              role={emp.role}
+              img={emp.img}
+              updateEmployee={updateEmployee}
+            />
+          );
+        })}
+      </div>
+      <AddEmployee newEmployee={newEmployee} />
+    </>
   );
 };
 
