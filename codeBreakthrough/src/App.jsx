@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Employee from "./components/Employee";
 import AddEmployee from "./components/AddEmployee";
 import EditEmployee from "./components/EditEmployee";
+import Header from "./components/Header";
 
 const App = () => {
   const [employees, setEmployees] = useState([
@@ -71,31 +72,33 @@ const App = () => {
   }
 
   return (
-    <>
-      <div className="flex flex-wrap justify-center">
-        {employees.map((emp) => {
-          const editEmployee = (
-            <EditEmployee
-              name={emp.name}
-              role={emp.role}
-              updateEmployee={updateEmployee}
-              id={emp.id}
-            />
-          );
-          return (
-            <Employee
-              key={emp.id}
-              id={emp.id}
-              name={emp.name}
-              role={emp.role}
-              img={emp.img}
-              editEmployee={editEmployee}
-            />
-          );
-        })}
-      </div>
-      <AddEmployee newEmployee={newEmployee} />
-    </>
+  <div className="app bg-gray-200 min-h-screen">
+    <Header />
+    <div className="flex flex-wrap justify-center m-2">
+      {employees.map((emp) => {
+        const editEmployee = (
+          <EditEmployee
+            name={emp.name}
+            role={emp.role}
+            updateEmployee={updateEmployee}
+            id={emp.id}
+          />
+        );
+        return (
+          <Employee
+            key={emp.id}
+            id={emp.id}
+            name={emp.name}
+            role={emp.role}
+            img={emp.img}
+            editEmployee={editEmployee}
+          />
+        );
+      })}
+    </div>
+    <AddEmployee newEmployee={newEmployee} />
+  
+  </div>
   );
 };
 
