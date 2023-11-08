@@ -86,7 +86,7 @@ function EditEmployee(props) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button type="submit" form="edit-modal" variant="primary">
+          <Button type="submit" form="edit-modal" variant="primary" onClick={handleClose}>
             Update
           </Button>
         </Modal.Footer>

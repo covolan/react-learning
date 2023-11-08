@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Employee from "./components/Employee";
 import AddEmployee from "./components/AddEmployee";
+import EditEmployee from "./components/EditEmployee";
 
 const App = () => {
   const [employees, setEmployees] = useState([
@@ -64,15 +65,23 @@ const App = () => {
       id: crypto.randomUUID(),
       name: name,
       img: img,
-      role: role
-    }
-    setEmployees([...employees, newEmp])
+      role: role,
+    };
+    setEmployees([...employees, newEmp]);
   }
 
   return (
     <>
       <div className="flex flex-wrap justify-center">
         {employees.map((emp) => {
+          const editEmployee = (
+            <EditEmployee
+              name={emp.name}
+              role={emp.role}
+              updateEmployee={updateEmployee}
+              id={emp.id}
+            />
+          );
           return (
             <Employee
               key={emp.id}
@@ -80,7 +89,7 @@ const App = () => {
               name={emp.name}
               role={emp.role}
               img={emp.img}
-              updateEmployee={updateEmployee}
+              editEmployee={editEmployee}
             />
           );
         })}
